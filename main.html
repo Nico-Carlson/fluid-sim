@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <title>2D Fluid Sim</title>
+    <style>
+      * {padding: 0; margin: 0;}
+      canvas {display: block; margin: 20px auto;}
+      body {background: #242321;}
+    </style>
+  </head>
+
+  <body>
+    
+    <canvas id="canvas" width="1280px" height="720px" style="border: solid 1px black"></canvas>
+    <script src="playground.js"></script>
+    <script src="simulation.js"></script>
+
+    <script>
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      // time variables
+      let lastTime = performance.now();
+      let currentTime = 0;
+      let deltaTime = 0;
+
+      let playground = new Playground();
+
+      mainLoop();
+
+      function updatePlayground(dt){
+        playground.update(dt);
+        playground.draw();
+
+      }
+
+      function mainLoop(){
+        window.requestAnimationFrame(mainLoop);
+
+        // time calculation
+        currentTime = performance.now();
+        deltaTime = (currentTime - lastTime) / 1000; // converted to <section>
+
+        updatePlayground(deltaTime);
+        lastTime = currentTime;
+        
+      }
+
+      function getMousePos(canvas, evt){
+        var rect = canvas.getBoundingClientRect();
+        return{
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+
+      canvas.addEventListener('mousemove', function(evt){
+        let mouse = getMousePos(canvas, evt);
+        playground.onMouseMove(mouse.x, mouse.y);
+      }, false)
+
+      canvas.addEventListener('mousedown', function(evt){
+        playground.onMouseDown(evt.button);
+      }, false)
+
+
+      canvas.addEventListener('mouseup', function(evt){
+        playground.onMouseUp(evt.button);
+      }, false)
+
+    </script>
+
+
+  </body>
+
+
+
+
+</html>
