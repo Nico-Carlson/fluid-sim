@@ -2,7 +2,7 @@
 
 **This is a simple Lagrangian fluid simulation**
 
-I am following the youtube tutorial made by Oasis Coding
+I am following the youtube tutorial made by PixelPhysics
   https://www.youtube.com/watch?v=7cYQFjQgTj4
 
 While this is mostly a project pursued out of the curiosity I have for particle simulation I will be using it as an opportunity to practice three main things
