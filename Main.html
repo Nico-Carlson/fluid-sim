@@ -32,6 +32,7 @@
       mainLoop();
 
       function updatePlayground(dt){
+        Clear();
         playground.update(dt);
         playground.draw();
 
@@ -47,6 +48,11 @@
         updatePlayground(deltaTime);
         lastTime = currentTime;
         
+      }
+
+      function Clear(){
+        ctx.fillStyle = "#242321";
+        ctx.fillRect(0,0, canvas.width, canvas.height);
       }
 
       function getMousePos(canvas, evt){
