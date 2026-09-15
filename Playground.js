@@ -13,6 +13,7 @@ class Playground{
   // draw method
   draw(){
     this.simulation.draw();
+
   }
 
   // mouse method
