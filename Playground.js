@@ -2,11 +2,13 @@ class Playground{
 
   // constructor
   constructor(){
-    this.simulation = new Simulation(); }
+    this.simulation = new Simulation();
+    this.mousePos = Vector2.Zero();
+  }
 
   // update method
   update(dt){
-    this.simulation.update(dt);
+    this.simulation.update(dt, this.mousePos);
   }
 
   // draw method
@@ -16,8 +18,8 @@ class Playground{
   }
 
   // mouse method
-  onMouseMove(x,y){
-    console.log("Mouse moved to: " +x+" "+y);
+  onMouseMove(position){
+    this.mousePos = position;
   }
 
   onMouseDown(button){
