@@ -26,7 +26,7 @@ class Simulation{
                                    y * offsetBetweenParticles + offsetAllParticles.y);
         
         let particle = new Particle(position);
-        //particle.velocity = Scale(new Vector2(-0.5 + Math.random(), -0.5 + Math.random()), 200);
+        particle.velocity = Scale(new Vector2(-0.5 + Math.random(), -0.5 + Math.random()), 200);
         this.particles.push(particle);
 
       }
@@ -63,14 +63,20 @@ class Simulation{
     this.fluidHashGrid.clearGrid();
     this.fluidHashGrid.mapParticlesToCell();
 
-    let gridHashId = this.fluidHashGrid.getGridHashFromPosition(mousePos);
-    let contentOfCell = this.fluidHashGrid.getContentOfCell(gridHashId);
+    this.particles[0].position = mousePos.Cpy();
+    let contentOfCell = this.fluidHashGrid.getNeighborOfParticleIdx(0);
+
     for(let i=0; i<this.particles.length; i++){
       this.particles[i].color = "#28b0ff";
     }
     for(let i=0; i<contentOfCell.length; i++){
       let particle = contentOfCell[i];
-      particle.color = "red";
+
+      let direction = Sub(particle.position, mousePos);
+      let distanceSquared = direction.Length2();
+      if(distanceSquared <= 25*25){
+        particle.color = "orange";
+      }
     }
   }
 

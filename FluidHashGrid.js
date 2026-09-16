@@ -32,6 +32,28 @@ class FluidHashGrid{
     return hash;
   }
 
+  getNeighborOfParticleIdx(i){
+    let neighbors = [];
+    let pos = this.particles[i].position;
+    
+    let particleGridX = parseInt(pos.x / this.cellSize);
+    let particleGridY = parseInt(pos.y / this.cellSize);
+
+    for(let x = -1; x <= 1; x++){
+      for(let y = -1; y <= 1; y++){
+        let gridX = particleGridX + x;
+        let gridY = particleGridY + y;
+    
+        let hashId = this.cellIndexToHash(gridX, gridY);
+        let content = this.getContentOfCell(hashId);
+
+        neighbors.push(...content);
+      }
+    }
+
+    return neighbors;
+  }
+
   mapParticlesToCell(){
     for(let i=0; i<this.particles.length; i++){
       let pos = this.particles[i].position;
