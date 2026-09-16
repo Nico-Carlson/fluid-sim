@@ -2,14 +2,14 @@ class Simulation{
  
   constructor () {
     this.particles = [];
-    this.AMOUNT_PARTICLES = 1000;
+    this.AMOUNT_PARTICLES = 2000;
     this.VELOCITY_DAMPING = 1;
     this.instantiateParticles();
   }
 
   instantiateParticles(){
     let offsetBetweenParticles = 20;
-    let offsetAllParticles = new Vector2(250, 80);
+    let offsetAllParticles = new Vector2(250, 40);
 
 
     let xParticles = Math.sqrt(this.AMOUNT_PARTICLES);
@@ -56,10 +56,10 @@ class Simulation{
     for(let i=0; i< this.particles.length; i++){
       let pos = this.particles[i].position;
 
-      if(pos.x < 0  || pos.x > canvas.width){
+      if(pos.x < 0 + 5  || pos.x > canvas.width - 5){
         this.particles[i].velocity.x *= -1;
       }
-      if(pos.y < 0 || pos.y > canvas.height){
+      if(pos.y < 0 + 5|| pos.y > canvas.height - 5){
         this.particles[i].velocity.y *= -1;
       }
  
