@@ -2,8 +2,7 @@ class Playground{
 
   // constructor
   constructor(){
-    this.simulation = new Simulation();
-  }
+    this.simulation = new Simulation(); }
 
   // update method
   update(dt){
@@ -13,6 +12,7 @@ class Playground{
   // draw method
   draw(){
     this.simulation.draw();
+
   }
 
   // mouse method

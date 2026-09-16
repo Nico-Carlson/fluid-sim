@@ -12,8 +12,11 @@
   <body>
     
     <canvas id="canvas" width="1280px" height="720px" style="border: solid 1px black"></canvas>
-    <script src="playground.js"></script>
-    <script src="simulation.js"></script>
+    <script src="Playground.js"></script>
+    <script src="Simulation.js"></script>
+    <script src="Vector2.js"></script>
+    <script src="DrawUtils.js"></script>
+    <script src="Particle.js"></script>
 
     <script>
       var canvas = document.getElementById("canvas");
@@ -29,6 +32,7 @@
       mainLoop();
 
       function updatePlayground(dt){
+        Clear();
         playground.update(dt);
         playground.draw();
 
@@ -46,6 +50,11 @@
         
       }
 
+      function Clear(){
+        ctx.fillStyle = "#242321";
+        ctx.fillRect(0,0, canvas.width, canvas.height);
+      }
+
       function getMousePos(canvas, evt){
         var rect = canvas.getBoundingClientRect();
         return{
@@ -56,7 +65,7 @@
 
       canvas.addEventListener('mousemove', function(evt){
         let mouse = getMousePos(canvas, evt);
-        playground.onMouseMove(mouse.x, mouse.y);
+        playground.onMouseMove(new Vector2(mouse.x, mouse.y));
       }, false)
 
       canvas.addEventListener('mousedown', function(evt){
