@@ -32,6 +32,8 @@ class Simulation{
   update(dt){
     this.predictPositions(dt);
     this.computeNextVelocity(dt);
+
+    this.worldBoundary();
   }
 
   predictPositions(dt){
@@ -49,6 +51,21 @@ class Simulation{
       this.particles[i].velocity = velocity;
     }
   }
+
+  worldBoundary(){
+    for(let i=0; i< this.particles.length; i++){
+      let pos = this.particles[i].position;
+
+      if(pos.x < 0  || pos.x > canvas.width){
+        this.particles[i].velocity.x *= -1;
+      }
+      if(pos.y < 0 || pos.y > canvas.height){
+        this.particles[i].velocity.y *= -1;
+      }
+ 
+    }
+  }
+
 
   draw(){
     for(let i=0; i< this.particles.length; i++){
