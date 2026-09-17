@@ -5,7 +5,7 @@ class Vector2{
   }
 
   Normalize(){
-    let length = this.Length;
+    let length = this.Length();
     this.x /= length;
     this.y /= length;
   }
