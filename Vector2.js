@@ -19,7 +19,7 @@ class Vector2 {
   }
 
   GetNormal() {
-    return Vector2(this.y - this.x);
+    return new Vector2(this.y, -this.x);
   }
 
   Dot(vec) {
